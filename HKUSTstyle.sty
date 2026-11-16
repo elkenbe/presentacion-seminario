@@ -1,0 +1,84 @@
+\mode<presentation>
+
+% Opción para la cabecera de sección (actualmente desactivada)
+\newif\ifbeamer@secheader
+\beamer@secheaderfalse
+\ProcessOptionsBeamer
+
+% --- 1. DEFINICIÓN DE LA PALETA DE COLORES INSTITUCIONAL (PUCP) ---
+\definecolor{pucp_azul1}{HTML}{2A2F63} % El más oscuro (Color 5) - Primario
+\definecolor{pucp_azul2}{HTML}{3E6D9C} % Azul medio (Color 4) - Secundario
+\definecolor{pucp_celeste}{HTML}{5FB0C9} % Celeste (Color 3) - Terciario
+\definecolor{pucp_cian}{HTML}{A7E0DB}    % Cian claro (Color 2)
+\definecolor{pucp_fondo}{HTML}{E3F6F5}   % Fondo/Acento muy claro (Color 1)
+
+% --- 2. CONFIGURACIÓN DE TEMAS BASE ---
+\useoutertheme[footline=authorinstitutetitle,subsection=false]{smoothbars}
+\useinnertheme{circles}
+
+% --- 3. CONFIGURACIÓN DEL PIE DE PÁGINA (FOOTLINE) ---
+\makeatletter
+\setbeamercolor{section in foot}{fg=white, bg=pucp_azul1} % Barra principal
+\setbeamercolor{subsection in foot}{fg=pucp_azul1, bg=pucp_cian} % Barra título corto
+
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{section in foot}%
+    \usebeamerfont{author in head/foot} PUCP
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{subsection in foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{section in foot}%
+    \insertshortdate{} \hspace*{5ex} \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\makeatother
+
+% --- 4. ASIGNACIÓN DE COLORES A ELEMENTOS PRINCIPALES ---
+\setbeamercolor{structure}{fg=pucp_azul1} % Bullets, números y títulos de TOC
+\setbeamercolor{palette primary}{bg=pucp_azul1, fg=white}
+\setbeamercolor{palette secondary}{bg=pucp_azul2, fg=white}
+\setbeamercolor{palette tertiary}{bg=pucp_celeste, fg=white}
+\setbeamercolor{palette quaternary}{bg=pucp_cian, fg=pucp_azul1}
+
+% Títulos de diapositivas (Frametitle)
+\setbeamercolor{frametitle}{bg=pucp_azul1, fg=white}
+\setbeamerfont{frametitle}{size=\large, series=\bfseries}
+
+% Título de la presentación (Title page)
+\setbeamercolor{title}{bg=pucp_azul1, fg=white}
+
+% --- 5. BLOQUES (Blocks) ---
+% Bloque normal
+\setbeamercolor{block title}{bg=pucp_azul1, fg=white}
+\setbeamercolor{block body}{bg=pucp_fondo, fg=black}
+
+% Bloque de ejemplo
+\setbeamercolor{block title example}{bg=pucp_azul2, fg=white}
+\setbeamercolor{block body example}{bg=pucp_fondo, fg=black}
+
+% Bloque de alerta
+\setbeamercolor{block title alerted}{bg=pucp_celeste, fg=white}
+\setbeamercolor{block body alerted}{bg=pucp_fondo, fg=black}
+
+% --- 6. OTROS AJUSTES DE ESTILO ---
+\setbeamertemplate{navigation symbols}{} % Quitar símbolos de navegación
+\setbeamertemplate{bibliography item}[text]
+\setbeamertemplate{caption}[numbered]
+
+% Ajuste de transparencia en el índice para secciones no actuales
+\setbeamercovered{transparent}
+
+% --- 7. TABLA DE CONTENIDOS AUTOMÁTICA ---
+\AtBeginSection[]{
+    \begin{frame}
+        \frametitle{Contenido}
+        \tableofcontents[currentsection]
+    \end{frame}
+}
+
+\mode<all>

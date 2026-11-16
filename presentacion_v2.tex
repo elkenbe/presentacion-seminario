@@ -1,0 +1,371 @@
+\documentclass[serif, aspectratio=169]{beamer}
+%\documentclass[serif]{beamer}  % for 4:3 ratio
+\usepackage[T1]{fontenc}
+\usepackage{fourier} % see "http://faq.ktug.org/wiki/uploads/MathFonts.pdf" for other options
+\usepackage{hyperref}
+\usepackage{latexsym,amsmath,xcolor,multicol,booktabs,calligra}
+\usepackage{graphicx,pstricks,listings,stackengine}
+\usepackage{lipsum}
+\usepackage{array} % este es nuevo para tablas no feas
+\author{Luis Martinez}
+\title{Seminario de investigación}
+\subtitle{¿Cuál es la relación entre la informalidad y el crecimiento económico en los departamentos del Perú?}
+\institute{
+    Pontificia Universidad Católica del Perú (PUCP) \\
+}
+\date{\small \today}
+\usepackage{HKUSTstyle}
+
+% defs
+\def\cmd#1{\texttt{\color{red}\footnotesize $\backslash$#1}}
+\def\env#1{\texttt{\color{blue}\footnotesize #1}}
+% set colors
+\definecolor{hkustyellow}{RGB}{167, 131, 55}
+\definecolor{hkustblue}{RGB}{0, 56, 116}
+\definecolor{hkustred}{RGB}{209, 51, 59}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\bfseries\color{deepblue},
+    emphstyle=\ttfamily\color{deepred},    % Custom highlighting style
+    stringstyle=\color{deepgreen},
+    numbers=left,
+    numberstyle=\small\color{halfgray},
+    rulesepcolor=\color{red!20!green!20!blue!20},
+    frame=shadowbox,
+}
+\usepackage[spanish]{babel}
+
+% ---------- Atajos para esta presentación ----------
+% Título y autores del artículo (se repiten en cada lámina del paper, como en el ejemplo)
+\newcommand{\paperframe}{%
+  \frametitle{The complex trilogy of shadow economy, inflation, and economic growth}%
+  \framesubtitle{Rdhaounia y Elweriemmi (2026)}}
+% Columnas con texto alineado a la izquierda
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+    \vspace*{-0.6cm}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[keepaspectratio, scale=0.5]{pic/LOGO-DE-PUCP.jpg}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+%==========================================================
+% TABLA DE CONTENIDOS
+%==========================================================
+\begin{frame}
+\tableofcontents[sectionstyle=show,
+subsectionstyle=show/shaded/hide,
+subsubsectionstyle=show/shaded/hide]
+\end{frame}
+
+%==========================================================
+% PAPER A PRESENTAR
+%==========================================================
+\section{Rdhaounia, N., y Elweriemmi, M. (2026). The complex trilogy of shadow economy, inflation, and economic growth: Evidence from MENA countries. European Journal of Government and Economics, 15(1), 55-75. https://doi.org/10.17979/ejge.2026.15.1.12398}
+
+%-------------------------------
+\begin{frame}
+\paperframe
+    \begin{block}{01 \quad Objetivo}
+        Analizar empíricamente las interrelaciones dinámicas y la causalidad estructural entre la economía informal, la inflación y el crecimiento económico en 15 países de la región MENA durante el periodo 1991--2017.
+    \end{block}
+    \begin{alertblock}{Pregunta de investigación}
+       ¿Existe causalidad bidireccional entre la economía informal, la inflación y el crecimiento económico al controlar los problemas de endogeneidad y simultaneidad estructural en la región MENA?
+    \end{alertblock}
+\end{frame}
+
+%-------------------------------
+\begin{frame}
+\paperframe
+\begin{block}{02 \quad Resultado 1: economía informal y crecimiento económico}\end{block}
+\begin{columns}[T]
+\begin{column}{0.56\textwidth}
+\centering
+{\scriptsize
+$SE_{it} = \alpha_0 + \alpha_1 CPI_{it} + \alpha_2 GDP_{it} + \alpha_3 \text{Self.Empl}_{it} + \alpha_4 HC_{it} + \lambda_{it}$\\[2pt]
+$GDP_{it} = \gamma_0 + \gamma_1 CPI_{it} + \gamma_2 SE_{it} + \gamma_3 FDI_{it} + \gamma_4 HC_{it} + \theta_{it}$}
+
+\vspace{4pt}
+{\scriptsize
+\begin{tabular}{lcc}
+\toprule
+ & \textbf{3SLS} & \textbf{GMM} \\
+\midrule
+SE $\rightarrow$ GDP ($\gamma_2$)  & $-$0.078 & $-$0.102$^{***}$ \\
+                                   & (0.084) & (0.032) \\
+GDP $\rightarrow$ SE ($\alpha_2$)  & $-$0.755$^{***}$ & $-$0.157$^{***}$ \\
+                                   & (0.265) & (0.029) \\
+\bottomrule
+\end{tabular}}
+
+\vspace{2pt}
+{\tiny\itshape Efecto bidireccional entre la economía informal (SE) y el crecimiento económico (GDP). Modelos 3SLS y GMM-sistema.
+$R^2$ (3SLS): ec.\ SE = 0.276; ec.\ GDP = 0.174. Hansen (GMM, p-valor): ec.\ SE = 0.263; ec.\ GDP = 0.247.
+Errores estándar entre paréntesis. *** p$<$0.01, ** p$<$0.05, * p$<$0.1}
+\end{column}
+\begin{column}{0.42\textwidth}
+\small
+Mayor crecimiento \textbf{reduce} la informalidad, porque expande el empleo formal y los incentivos al cumplimiento.
+\begin{itemize}
+  \item Crecimiento $\rightarrow$ informalidad: negativo en ambos métodos.
+  \item Informalidad $\rightarrow$ crecimiento: negativo \textbf{solo en GMM}; en 3SLS no es significativo.
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+%-------------------------------
+\begin{frame}
+\paperframe
+\begin{block}{03 \quad Resultado 2: economía informal e inflación}\end{block}
+\begin{columns}[T]
+\begin{column}{0.56\textwidth}
+\centering
+{\scriptsize
+$SE_{it} = \alpha_0 + \alpha_1 CPI_{it} + \alpha_2 GDP_{it} + \alpha_3 \text{Self.Empl}_{it} + \alpha_4 HC_{it} + \lambda_{it}$\\[2pt]
+$CPI_{it} = \beta_0 + \beta_1 SE_{it} + \beta_2 GDP_{it} + \beta_3 MS_{it} + \beta_4 TR_{it} + \beta_5 HC_{it} + \epsilon_{it}$}
+
+\vspace{4pt}
+{\scriptsize
+\begin{tabular}{lcc}
+\toprule
+ & \textbf{3SLS} & \textbf{GMM} \\
+\midrule
+SE $\rightarrow$ CPI ($\beta_1$)  & 1.140$^{***}$ & 0.941$^{*}$ \\
+                                  & (0.254) & (0.505) \\
+CPI $\rightarrow$ SE ($\alpha_1$) & 0.493$^{**}$ & 0.082$^{*}$ \\
+                                  & (0.216) & (0.044) \\
+\bottomrule
+\end{tabular}}
+
+\vspace{2pt}
+{\tiny\itshape Efecto bidireccional entre la economía informal (SE) y la inflación (CPI). Modelos 3SLS y GMM-sistema.
+$R^2$ (3SLS): ec.\ SE = 0.276; ec.\ \textbf{CPI = $-$1.324}. Hansen (GMM, p-valor): ec.\ SE = 0.263; ec.\ CPI = 0.199.
+Errores estándar entre paréntesis. *** p$<$0.01, ** p$<$0.05, * p$<$0.1}
+\end{column}
+\begin{column}{0.42\textwidth}
+\small
+Vínculo causal \textbf{bidireccional positivo}: ambas se refuerzan.
+\begin{itemize}
+  \item La informalidad erosiona los ingresos públicos e impulsa el financiamiento monetario, lo que eleva la inflación.
+  \item La inflación fomenta la informalidad, porque los agentes buscan protegerse de la pérdida de poder adquisitivo.
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+%-------------------------------
+\begin{frame}
+\paperframe
+\begin{block}{04 \quad Resultado 3: crecimiento económico e inflación}\end{block}
+\begin{columns}[T]
+\begin{column}{0.56\textwidth}
+\centering
+{\scriptsize
+$CPI_{it} = \beta_0 + \beta_1 SE_{it} + \beta_2 GDP_{it} + \beta_3 MS_{it} + \beta_4 TR_{it} + \beta_5 HC_{it} + \epsilon_{it}$\\[2pt]
+$GDP_{it} = \gamma_0 + \gamma_1 CPI_{it} + \gamma_2 SE_{it} + \gamma_3 FDI_{it} + \gamma_4 HC_{it} + \theta_{it}$}
+
+\vspace{4pt}
+{\scriptsize
+\begin{tabular}{lcc}
+\toprule
+ & \textbf{3SLS} & \textbf{GMM} \\
+\midrule
+CPI $\rightarrow$ GDP ($\gamma_1$) & $-$0.486$^{***}$ & $-$0.053$^{**}$ \\
+                                   & (0.131) & (0.019) \\
+GDP $\rightarrow$ CPI ($\beta_2$)  & $-$0.153$^{*}$ & $-$0.465$^{***}$ \\
+                                   & (0.082) & (0.101) \\
+\bottomrule
+\end{tabular}}
+
+\vspace{2pt}
+{\tiny\itshape Efecto bidireccional entre la inflación (CPI) y el crecimiento económico (GDP). Modelos 3SLS y GMM-sistema.
+$R^2$ (3SLS): ec.\ \textbf{CPI = $-$1.324}; ec.\ GDP = 0.174. Hansen (GMM, p-valor): ec.\ CPI = 0.199; ec.\ GDP = 0.247.
+Errores estándar entre paréntesis. *** p$<$0.01, ** p$<$0.05, * p$<$0.1}
+\end{column}
+\begin{column}{0.42\textwidth}
+\small
+Relación \textbf{bidireccional negativa} entre inflación y crecimiento.
+\begin{itemize}
+  \item Una inflación moderada puede estimular la actividad, pero una inflación alta y persistente frena el crecimiento por distorsión de precios y menores ingresos reales.
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+%-------------------------------
+\begin{frame}
+\paperframe
+\begin{block}{05 \quad Limitaciones del artículo}
+\small
+\begin{itemize}
+  \item \textbf{Condición de orden mal calculada:} usan $g'=1$, pero cada ecuación contiene las 3 endógenas ($g'=3$). La ecuación de inflación está \textbf{exactamente} identificada, no sobreidentificada.
+  \item \textbf{Condición de rango:} se cumple en 3SLS (Self.Empl, MS, TR y FDI significativos), pero en GMM la IED no es significativa: la ecuación de inflación queda débilmente identificada.
+  \item \textbf{Exclusiones discutibles:} la recaudación y la IED quedan fuera de la ecuación de informalidad; el autoempleo explica la informalidad casi de forma mecánica.
+  \item \textbf{Otros:} $R^2$ negativo en la ecuación de inflación (3SLS), no reportan efectos fijos, no indican la fuente de la mayoría de variables y los datos terminan en 2017.
+\end{itemize}
+\end{block}
+\end{frame}
+
+%==========================================================
+% APORTES PARA MI INVESTIGACIÓN
+%==========================================================
+\section{Aportes para mi investigación}
+
+%-------------------------------
+\begin{frame}{Comparación de unidades de análisis}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|L{2.6cm}|L{2.6cm}|L{5.6cm}|L{2cm}|}
+\hline
+ & \textbf{Unidad de análisis} & \textbf{Espacio} & \textbf{Tiempo} \\
+\hline
+\textbf{Rdhaounia y Elweriemmi (2026)} & Países & 15 países de Medio Oriente y Norte de África: Argelia, Baréin, Egipto, Irán, Jordania, Kuwait, Líbano, Libia, Marruecos, Omán, Catar, Arabia Saudita, Siria, Túnez y Yemen & 1991--2017 (datos anuales) \\
+\hline
+\textbf{Yo} & Departamentos del Perú & 24 departamentos y la Provincia Constitucional del Callao & 2004--2019 (datos anuales) \\
+\hline
+\end{tabular}
+\end{frame}
+
+%-------------------------------
+\begin{frame}{Comparación de variables}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|L{2.2cm}|L{2.9cm}|L{2.9cm}|L{2.2cm}|L{3cm}|}
+\hline
+ & \textbf{Endógena 1} & \textbf{Endógena 2} & \textbf{Endógena 3} & \textbf{Exógenas} \\
+\hline
+\textbf{Rdhaounia y Elweriemmi (2026)} & \textbf{Economía informal (SE):} tamaño de la economía informal como \% del PBI (Medina y Schneider$^*$, 2018) & \textbf{Crecimiento económico (GDP):} variación porcentual anual del PBI & \textbf{Inflación (CPI):} variación porcentual anual del IPC & Autoempleo (Self.Empl), IED (FDI), oferta monetaria (MS), recaudación (TR) y capital humano (HC) \\
+\hline
+\textbf{Yo} & \textbf{Informalidad (INF):} tasa de empleo informal construida con la ENAHO (\% de la PEA ocupada) & \textbf{Crecimiento económico (CREC):} variación porcentual anual del VAB real per cápita del departamento & \textbf{No aplica} & Tasa de desempleo (DES), inversión pública ejecutada (INVPUB, \% del VAB) e IDH como control \\
+\hline
+\end{tabular}
+
+\vspace{0.3cm}
+{\tiny \textit{*: Estimación MIMIC. Causas: tributación directa e indirecta, contribuciones a la seguridad social, carga regulatoria, calidad institucional, moral fiscal, desempleo y PIB per cápita.}}
+\end{frame}
+
+%-------------------------------
+\begin{frame}{Comparación de bases de datos}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
+\centering
+\textbf{Rdhaounia y Elweriemmi (2026)}
+
+\vspace{2pt}
+\raggedright\scriptsize
+\underline{Base:} Medina y Schneider (2018), Tabla A.1; \textit{World Development Indicators} (WDI)\\
+\underline{Emisor:} FMI (SE) y Banco Mundial (CPI, GDP, HC)
+
+\vspace{4pt}
+\centering
+{\scriptsize\setlength{\tabcolsep}{3pt}
+\begin{tabular}{ccrrrr}
+\toprule
+\textbf{País} & \textbf{Año} & \textbf{SE} & \textbf{CPI} & \textbf{GDP} & \textbf{HC} \\
+ & & (\% PBI) & (\%) & (\%) & (\%) \\
+\midrule
+Argelia & 1991 & 34.96 & 25.89 & $-$1.20 & 10.80 \\
+Argelia & 1992 & 36.14 & 31.67 & 1.80 & 10.95 \\
+Argelia & 1993 & 38.16 & 20.54 & $-$2.10 & 10.86 \\
+Argelia & 1994 & 38.88 & 29.05 & $-$0.90 & 10.43 \\
+Argelia & 1995 & 37.64 & 29.78 & 3.80 & 10.24 \\
+\bottomrule
+\end{tabular}}
+
+\vspace{2pt}
+\raggedright
+{\tiny\itshape Fragmento reconstruido con las fuentes del artículo, que no publica su base de datos.}
+\end{column}
+\vrule
+\begin{column}{0.54\textwidth}
+\centering
+\textbf{Yo}
+
+\vspace{2pt}
+\raggedright\scriptsize
+\underline{Base:} ENAHO (módulo 500), PBI por departamentos, Consulta Amigable e IDH departamental\\
+\underline{Emisor:} INEI (INF, DES, CREC), MEF (INVPUB) y PNUD Perú (IDH)
+
+\vspace{4pt}
+\centering
+{\scriptsize\setlength{\tabcolsep}{2pt}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Departamento} & \textbf{Año} & \textbf{INF} & \textbf{CREC} & \textbf{DES} & \textbf{INVPUB} & \textbf{IDH} \\
+ & & (\%) & (\%) & (\%) & (\% VAB) & (0--1) \\
+\midrule
+Amazonas & 2004 & \ldots & \ldots & \ldots & \ldots & \ldots \\
+Amazonas & 2005 & \ldots & \ldots & \ldots & \ldots & \ldots \\
+Áncash & 2004 & \ldots & \ldots & \ldots & \ldots & \ldots \\
+Áncash & 2005 & \ldots & \ldots & \ldots & \ldots & \ldots \\
+Apurímac & 2004 & \ldots & \ldots & \ldots & \ldots & \ldots \\
+\bottomrule
+\end{tabular}}
+
+\vspace{2pt}
+\raggedright
+{\tiny\itshape Estructura de la base que se construirá (panel departamento--año).}
+\end{column}
+\end{columns}
+\end{frame}
+
+%-------------------------------
+\begin{frame}{Comparación del modelo econométrico}
+\footnotesize
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|L{2.4cm}|L{11cm}|}
+\hline
+\textbf{Rdhaounia y Elweriemmi (2026)} &
+Sistema de 3 ecuaciones simultáneas (SE, CPI, GDP) estimado por \textbf{3SLS}, con GMM-sistema como robustez. Identificación por exclusión de Self.Empl, MS, TR y FDI. \\
+\hline
+\textbf{Yo} &
+Las ecuaciones (1) y (3) del artículo, sin la de inflación, con efectos fijos de departamento y año. Estimación por \textbf{3SLS} sobre datos \textit{within} (2SLS-EF por ecuación como contraste):
+\[
+\begin{aligned}
+INF_{d,t} &= \alpha_0 + \alpha_1 CREC_{d,t} + \alpha_2 DES_{d,t} + \alpha_3 IDH_{d,t} + \mu_d + \lambda_t + u_{d,t}\\
+CREC_{d,t} &= \gamma_0 + \gamma_1 INF_{d,t} + \gamma_2 INVPUB_{d,t} + \gamma_3 IDH_{d,t} + \mu_d + \lambda_t + v_{d,t}
+\end{aligned}
+\]
+{\scriptsize $d$: departamento $\cdot$ $t$: año $\cdot$ $DES$: tasa de desempleo (en el artículo entra en la ecuación de informalidad en GMM) $\cdot$ $INVPUB$: inversión pública ejecutada, \% del VAB (análoga a la IED del artículo) $\cdot$ $IDH$: control en ambas ecuaciones, como el HC. Cada ecuación excluye una exógena: exactamente identificadas si $\alpha_2 \neq 0$ y $\gamma_2 \neq 0$.} \\
+\hline
+\end{tabular}
+\end{frame}
+
+%-------------------------------
+\begin{frame}{¿Cuáles son los siguientes pasos que debo seguir?}
+\begin{enumerate}
+  \item[\textbf{01}] Construir la tasa de empleo informal y la tasa de desempleo con la ENAHO (2004--2019), y validar la informalidad con la variable oficial \texttt{ocupinf} del INEI (desde 2012).
+  \item[\textbf{02}] Empalmar el VAB departamental del INEI (base 1994 y base 2007), expresarlo en términos per cápita y obtener la inversión pública ejecutada por departamento (MEF).
+  \item[\textbf{03}] Verificar la condición de rango: probar que el desempleo y la inversión pública son relevantes en su ecuación (F de primera etapa $>$ 10).
+  \item[\textbf{04}] Estimar 2SLS y 3SLS con efectos fijos, y aplicar las pruebas de Hausman, endogeneidad y sobreidentificación.
+\end{enumerate}
+\end{frame}
+
+%-------------------------------
+\begin{frame}
+\centering
+\vfill
+{\Huge \textbf{¡Gracias!}}
+
+\vspace{0.8cm}
+{\large Luis Martinez}\\[4pt]
+{\small Pontificia Universidad Católica del Perú (PUCP)}
+\vfill
+\end{frame}
+
+\end{document}
