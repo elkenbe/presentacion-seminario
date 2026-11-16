@@ -1,4 +1,4 @@
-# presentacion_v2.tex
+# presentacion_seminario.tex
 
 Presentación en Beamer (16:9) para el **Seminario de investigación** de la PUCP. Expone un artículo y luego explica qué aporta a la investigación propia: *¿Cuál es la relación entre la informalidad y el crecimiento económico en los departamentos del Perú?*
 
